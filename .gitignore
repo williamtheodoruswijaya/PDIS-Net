@@ -1,6 +1,8 @@
 
 # Dataset files
 *.zip
+*.safetensors
+*.pth
 notebooks/Dal Lake Floating Plastic Waste Detection Dataset (FloPWD 2025)/
 data/
 
