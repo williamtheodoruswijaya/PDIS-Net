@@ -1,0 +1,7 @@
+
+# Dataset files
+*.zip
+notebooks/Dal Lake Floating Plastic Waste Detection Dataset (FloPWD 2025)/
+data/
+
+notebooks/Dal Lake Floating Plastic Waste Detection Dataset (FloPWD 2025).zip
