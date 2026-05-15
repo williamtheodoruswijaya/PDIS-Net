@@ -1,0 +1,16 @@
+{
+    "best_threshold": 0.9000000000000002,
+    "best_dice": 0.7399582266807556,
+    "model_id": "tue-mps/eomt-dinov3-ade-semantic-large-512",
+    "image_height": 512,
+    "image_width": 512,
+    "num_classes": 2,
+    "label2id": {
+        "background": 0,
+        "plastic": 1
+    },
+    "id2label": {
+        "0": "background",
+        "1": "plastic"
+    }
+}
