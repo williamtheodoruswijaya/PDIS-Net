@@ -1,0 +1,16 @@
+{
+  "segformer": {
+    "label": "SegFormer MiT-B3 FloPWD",
+    "repo_model_path": "../../model/20261205 - Segformer (mIoU=0.81)",
+    "local_model_path": "models/segformer",
+    "default_threshold": 0.8,
+    "notes": "Supported by the local Transformers 4.41.x install."
+  },
+  "dinov3": {
+    "label": "EoMT-DINOv3 FloPWD",
+    "repo_model_path": "../../model/20261305 - DinoV3 (mIoU=0.7916)",
+    "local_model_path": "models/dinov3",
+    "default_threshold": 0.9,
+    "notes": "Requires a Transformers version with EomtDinov3ForUniversalSegmentation support."
+  }
+}

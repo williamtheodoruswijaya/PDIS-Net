@@ -1,0 +1,7 @@
+.venv/
+runs/
+models/segformer/
+models/dinov3/
+__pycache__/
+*.pyc
+
