@@ -1,0 +1,6 @@
+-r requirements.txt
+
+# Needed for the saved EoMT-DINOv3 architecture.
+# Keep SegFormer as the default if this package is unavailable.
+transformers>=5.8.1
+
