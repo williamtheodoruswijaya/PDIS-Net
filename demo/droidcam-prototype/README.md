@@ -25,7 +25,7 @@ This demo defaults to SegFormer because the local environment already supports i
 From the repo root:
 
 ```powershell
-cd "D:\BINUS\Semester 6\semantix\drone_phone_demo"
+cd "D:\BINUS\Semester 6\semantix\demo\droidcam-prototype"
 py -m venv .venv
 .\.venv\Scripts\Activate.ps1
 py -m pip install -r requirements.txt

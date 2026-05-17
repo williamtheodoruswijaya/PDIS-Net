@@ -89,6 +89,12 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Run headless and only write outputs. Useful for remote/embedded tests.",
     )
+    parser.add_argument(
+        "--max-frames",
+        type=int,
+        default=0,
+        help="Stop after N frames. 0 means unlimited. Useful with --no-window for automated runs.",
+    )
     return parser
 
 
@@ -134,6 +140,8 @@ def main(argv: Optional[list[str]] = None) -> int:
     window_name = "Drone Phone Plastic Waste Demo"
     last_save_at = None
     frame_index = 0
+    consecutive_failures = 0
+    max_consecutive_failures = 20
 
     if not args.no_window:
         cv2.namedWindow(window_name, cv2.WINDOW_NORMAL)
@@ -146,9 +154,17 @@ def main(argv: Optional[list[str]] = None) -> int:
         while True:
             ok, frame_bgr = cap.read()
             if not ok or frame_bgr is None:
+                consecutive_failures += 1
+                if consecutive_failures >= max_consecutive_failures:
+                    print(
+                        f"Camera unavailable for {consecutive_failures} consecutive reads. "
+                        "Exiting. Check DroidCam/webcam connection."
+                    )
+                    break
                 print("Camera frame was not available. Check DroidCam/webcam connection.")
                 time.sleep(0.5)
                 continue
+            consecutive_failures = 0
 
             result = segmenter.predict(frame_bgr)
             overlay = make_overlay(frame_bgr, result.mask, result.probability)
@@ -190,6 +206,9 @@ def main(argv: Optional[list[str]] = None) -> int:
             frame_index += 1
 
             if key in (ord("q"), 27):
+                break
+            if args.max_frames > 0 and frame_index >= args.max_frames:
+                print(f"Reached --max-frames limit ({args.max_frames}).")
                 break
 
     except KeyboardInterrupt:
