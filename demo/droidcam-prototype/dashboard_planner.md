@@ -9,14 +9,14 @@ Build a dashboard that maps each plastic-waste detection from the phone/drone de
 The phone demo writes one latest JSON file for live dashboard polling:
 
 ```text
-drone_phone_demo/runs/latest_detection.json
+droidcam-prototype/runs/latest_detection.json
 ```
 
 It also writes durable run logs:
 
 ```text
-drone_phone_demo/runs/YYYYMMDD_HHMMSS/detections.csv
-drone_phone_demo/runs/YYYYMMDD_HHMMSS/detections.jsonl
+droidcam-prototype/runs/YYYYMMDD_HHMMSS/detections.csv
+droidcam-prototype/runs/YYYYMMDD_HHMMSS/detections.jsonl
 ```
 
 Required dashboard fields:

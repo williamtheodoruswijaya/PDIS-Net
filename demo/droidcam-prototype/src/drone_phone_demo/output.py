@@ -66,9 +66,9 @@ class DetectionWriter:
             "threshold": round(float(threshold), 4),
             "inference_ms": round(float(inference_ms), 2),
             "camera_source": self.camera_source,
-            "image_path": str(image_path),
-            "mask_path": str(mask_path),
-            "overlay_path": str(overlay_path),
+            "image_path": image_path.relative_to(self.output_root).as_posix(),
+            "mask_path": mask_path.relative_to(self.output_root).as_posix(),
+            "overlay_path": overlay_path.relative_to(self.output_root).as_posix(),
         }
 
         self._append_csv(record)
