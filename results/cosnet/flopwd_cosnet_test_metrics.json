@@ -1,0 +1,20 @@
+{
+    "iou": 0.43697619438171387,
+    "foreground_iou": 0.43697619438171387,
+    "global_foreground_iou": 0.43697619438171387,
+    "background_iou": 0.950626790523529,
+    "miou": 0.6938015222549438,
+    "dice": 0.6081885099411011,
+    "global_dice": 0.6081885099411011,
+    "positive_iou": 0.2907242178916931,
+    "positive_dice": 0.4154800474643707,
+    "precision": 0.5574209094047546,
+    "recall": 0.6691300868988037,
+    "empty_specificity": 0.9948131442070007,
+    "empty_false_positive_rate": 0.005186829250305891,
+    "positive_images": 222,
+    "empty_images": 79,
+    "predicted_positive_pixels": 9142230,
+    "actual_positive_pixels": 7615963,
+    "loss": 0.5856146863754222
+}
