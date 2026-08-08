@@ -1,6 +1,7 @@
 # Dataset files
 *.zip
-# *.safetensors  <-- Hapus atau comment baris ini
-# *.pth          <-- Hapus atau comment baris ini
+# *.safetensors
+# *.pth        
 notebooks/Dal Lake Floating Plastic Waste Detection Dataset (FloPWD 2025)/
 data/
+.second-brain/
