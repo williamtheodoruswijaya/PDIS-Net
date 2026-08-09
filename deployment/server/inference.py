@@ -12,7 +12,8 @@ import torch
 import torch.nn.functional as F
 from PIL import Image
 from transformers import SegformerForSemanticSegmentation
-
+import warnings
+warnings.filterwarnings("ignore", category=UserWarning)
 
 class Predictor:
     """Loads the checkpoint once, then runs inference on demand.
@@ -85,3 +86,12 @@ class Predictor:
                                   mode="bilinear", align_corners=False)
 
         return probs[0, 0].cpu().numpy()
+
+'''
+# for testing purposes
+if __name__ == "__main__":
+    p = Predictor.from_env().load()
+    probs = p.predict(Image.open("./data/Raw_Images/img30.jpg"))
+    print(probs.shape, probs.min(), probs.max())
+'''
+
