@@ -21,8 +21,13 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title="PDIS-Net Inference API", lifespan=lifespan)
 
 @app.get("/health")
-def health():
-    return {"status": "ok"}
+def health(request: Request):
+    predictor = request.app.state.predictor
+    return {
+        "status": "ok",
+        "device": predictor.device,
+        "loaded": predictor.loaded
+    }
 
 @app.post("/predict")
 def predict(
