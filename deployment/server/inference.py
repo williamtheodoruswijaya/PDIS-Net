@@ -40,7 +40,7 @@ class Predictor:
         self.model = model.to(self.device).eval() # type: ignore
         return self
 
-def predict(self, image: Image.Image) -> np.ndarray:
+    def predict(self, image: Image.Image) -> np.ndarray:
         # Resize the image to match the input dimensions expected by the model
         height, width = self.INPUT_SIZE
         resized = image.convert("RGB").resize((width, height), Image.BILINEAR) # type: ignore
