@@ -31,7 +31,7 @@ class SegmentationApp:
             with st.spinner("Waking server, first call can take ~1 min..."):
                 st.session_state.result = self.client.predict(upload.getvalue())
 
-        if "result" in st.session_state:
+        if "result" not in st.session_state:
             return
 
         result = st.session_state.result
