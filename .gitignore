@@ -11,3 +11,5 @@ __pycache__/
 .claude
 .copilot
 CLAUDE.md
+AGENTS.md
+dev
