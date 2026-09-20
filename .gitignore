@@ -3,7 +3,6 @@
 # *.safetensors
 # *.pth        
 notebooks/Dal Lake Floating Plastic Waste Detection Dataset (FloPWD 2025)/
-data/
 .second-brain/
 .streamlit/secrets.toml
 __pycache__/
