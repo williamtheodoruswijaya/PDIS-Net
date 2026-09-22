@@ -6,6 +6,7 @@ Metrics produced by the training notebooks, one folder per run:
 results/<run_id>/v1/
 ├── test_metrics.json   # final test scores (mIoU, IoU, dice, ...)
 ├── history.csv         # per-epoch train/val loss and metrics
+├── split_{train,val,test}.csv  # image_name -> split used for this run
 └── *.png               # sample predictions
 ```
 
