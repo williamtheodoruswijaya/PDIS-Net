@@ -3,13 +3,14 @@
 Training notebooks, one folder per run:
 
 ```
-notebooks/<NN>-<architecture>-<init>/v1.ipynb
+notebooks/<NN>-<architecture>-<backbone>-<init>/v1.ipynb
 ```
 
 - `<NN>` is the order the run is executed (`01` … `13`), so the folders sort
   themselves in the order the thesis reports them.
-- `<architecture>-<init>` names the two variables being compared, e.g.
-  `07-segformer-imagenet`, `08-segformer-raw`, `09-segformer-aerial`.
+- `<architecture>-<backbone>-<init>` names the three variables being compared, e.g.
+  `07-segformer-mitb3-imagenet`, `08-segformer-mitb3-raw`, `09-segformer-mitb3-aerial`,
+  `01-unet-resnet50-imagenet`.
 - Rerunning an experiment adds `v2.ipynb` next to `v1.ipynb`. Nothing is
   overwritten, so an earlier number can always be traced back to the notebook
   that produced it.
