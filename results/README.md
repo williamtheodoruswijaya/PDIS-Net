@@ -11,7 +11,7 @@ results/<run_id>/v1/
 ```
 
 `<run_id>` is identical to the folder name under `notebooks/`, so
-`results/07-segformer-imagenet/` belongs to
-`notebooks/07-segformer-imagenet/`.
+`results/07-segformer-mitb3-imagenet/` belongs to
+`notebooks/07-segformer-mitb3-imagenet/`.
 
 Results from before the 3x3 grid restart are kept in `.archive/results/`.
