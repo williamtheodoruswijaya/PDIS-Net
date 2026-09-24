@@ -1,0 +1,33 @@
+{
+  "foreground_iou": 0.6128255128860474,
+  "background_iou": 0.9708513617515564,
+  "miou": 0.791838526725769,
+  "dice": 0.712544322013855,
+  "precision": 0.7852359414100647,
+  "recall": 0.7515241503715515,
+  "loss": 0.3218599680419031,
+  "run_id": "unet-imagenet",
+  "version": "v1",
+  "best_val_miou": 0.8029442429542542,
+  "n_train": 1400,
+  "n_val": 301,
+  "n_test": 301,
+  "cfg": {
+    "arch": "unet",
+    "init": "imagenet",
+    "run_version": "v1",
+    "img_size": 512,
+    "batch_size": 4,
+    "epochs": 40,
+    "patience": 8,
+    "lr_encoder": 1e-05,
+    "lr_decoder": 0.0003,
+    "weight_decay": 0.0001,
+    "seed": 42,
+    "dice_weight": 0.7,
+    "ce_weight": 0.3,
+    "threshold": 0.5,
+    "dup_hamming": 5,
+    "run_id": "unet-imagenet"
+  }
+}
