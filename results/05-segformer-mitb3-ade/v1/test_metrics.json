@@ -1,0 +1,33 @@
+{
+  "foreground_iou": 0.6499360203742981,
+  "background_iou": 0.9653803110122681,
+  "miou": 0.8076580762863159,
+  "dice": 0.7468901872634888,
+  "precision": 0.7627191543579102,
+  "recall": 0.8305155634880066,
+  "loss": 0.24640566301777175,
+  "run_id": "segformer-ade",
+  "version": "v1",
+  "best_val_miou": 0.8122721314430237,
+  "n_train": 1400,
+  "n_val": 301,
+  "n_test": 301,
+  "cfg": {
+    "arch": "segformer",
+    "init": "ade",
+    "run_version": "v1",
+    "img_size": 512,
+    "batch_size": 4,
+    "epochs": 40,
+    "patience": 8,
+    "lr_encoder": 1e-05,
+    "lr_decoder": 0.0003,
+    "weight_decay": 0.0001,
+    "seed": 42,
+    "dice_weight": 0.7,
+    "ce_weight": 0.3,
+    "threshold": 0.5,
+    "dup_hamming": 5,
+    "run_id": "segformer-ade"
+  }
+}
