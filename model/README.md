@@ -12,4 +12,5 @@ Regenerate this table: `python model/build_index.py`. Sorted by mIoU, best first
 | 04-segformer-mitb3-aerial | v1 | 0.6595 | 0.8140 | 0.9685 | 0.7588 |
 | 05-segformer-mitb3-ade | v1 | 0.6499 | 0.8077 | 0.9654 | 0.7469 |
 | 03-unet-mitb3-imagenet | v1 | 0.6128 | 0.7918 | 0.9709 | 0.7125 |
+| 06-segformer-mitb3-drone | v1 | 0.6001 | 0.7809 | 0.9617 | 0.6996 |
 | 01-segformer-mitb3-raw | v1 | 0.1404 | 0.4725 | 0.8046 | 0.1841 |
