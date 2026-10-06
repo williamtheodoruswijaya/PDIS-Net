@@ -1,0 +1,33 @@
+{
+  "foreground_iou": 0.6500588059425354,
+  "background_iou": 0.9673252105712891,
+  "miou": 0.8086919188499451,
+  "dice": 0.748333215713501,
+  "precision": 0.7815460562705994,
+  "recall": 0.8027644753456116,
+  "loss": 0.26483341345661565,
+  "run_id": "segformer-imagenet-b5",
+  "version": "v1",
+  "best_val_miou": 0.8142733573913574,
+  "n_train": 1400,
+  "n_val": 301,
+  "n_test": 301,
+  "cfg": {
+    "arch": "segformer",
+    "init": "imagenet-b5",
+    "run_version": "v1",
+    "img_size": 512,
+    "batch_size": 4,
+    "epochs": 40,
+    "patience": 8,
+    "lr_encoder": 1e-05,
+    "lr_decoder": 0.0003,
+    "weight_decay": 0.0001,
+    "seed": 42,
+    "dice_weight": 0.7,
+    "ce_weight": 0.3,
+    "threshold": 0.5,
+    "dup_hamming": 5,
+    "run_id": "segformer-imagenet-b5"
+  }
+}

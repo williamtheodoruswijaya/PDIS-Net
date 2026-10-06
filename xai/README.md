@@ -6,7 +6,7 @@ folder from `notebooks/`.
 
 ```
 xai/
-├── seg_eigen_cam.py    # shared implementation, used by every notebook here
+├── (no shared .py: grad-cam ships SegEigenCAM, each notebook subclasses it in Cell 8)
 ├── <run_id>/v1.ipynb   # one notebook per trained model
 └── out/<run_id>/       # generated heatmaps, not tracked by git
 ```
