@@ -1,0 +1,33 @@
+{
+  "foreground_iou": 0.3464398682117462,
+  "background_iou": 0.9523938894271851,
+  "miou": 0.6494169235229492,
+  "dice": 0.4427330493927002,
+  "precision": 0.49323058128356934,
+  "recall": 0.6983258128166199,
+  "loss": 0.6191902376319233,
+  "run_id": "unet-raw",
+  "version": "v1",
+  "best_val_miou": 0.6800286173820496,
+  "n_train": 1400,
+  "n_val": 301,
+  "n_test": 301,
+  "cfg": {
+    "arch": "unet",
+    "init": "raw",
+    "run_version": "v1",
+    "img_size": 512,
+    "batch_size": 4,
+    "epochs": 40,
+    "patience": 8,
+    "lr_encoder": 1e-05,
+    "lr_decoder": 0.0003,
+    "weight_decay": 0.0001,
+    "seed": 42,
+    "dice_weight": 0.7,
+    "ce_weight": 0.3,
+    "threshold": 0.5,
+    "dup_hamming": 5,
+    "run_id": "unet-raw"
+  }
+}
