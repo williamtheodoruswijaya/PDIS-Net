@@ -29,5 +29,7 @@
     "threshold": 0.5,
     "dup_hamming": 5,
     "run_id": "segformer-ade"
-  }
+  },
+  "background_acc": 0.9707052111625671,
+  "mpa": 0.9006146490573883
 }
