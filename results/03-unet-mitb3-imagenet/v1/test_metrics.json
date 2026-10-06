@@ -29,5 +29,7 @@
     "threshold": 0.5,
     "dup_hamming": 5,
     "run_id": "unet-imagenet"
-  }
+  },
+  "background_acc": 0.9816892147064209,
+  "mpa": 0.8666074872016907
 }

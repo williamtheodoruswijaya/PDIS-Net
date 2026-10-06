@@ -29,5 +29,7 @@
     "threshold": 0.5,
     "dup_hamming": 5,
     "run_id": "segformer-imagenet"
-  }
+  },
+  "background_acc": 0.9734894037246704,
+  "mpa": 0.8975491523742676
 }

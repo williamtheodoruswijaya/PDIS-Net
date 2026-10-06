@@ -29,5 +29,7 @@
     "threshold": 0.5,
     "dup_hamming": 5,
     "run_id": "segformer-aerial"
-  }
+  },
+  "background_acc": 0.974681556224823,
+  "mpa": 0.902216911315918
 }
