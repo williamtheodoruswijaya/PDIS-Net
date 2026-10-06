@@ -1,6 +1,3 @@
-# Adds background_acc + mpa to runs trained before notebooks/v2.ipynb existed.
-# Re-scores each model/<run>/v1 weight on its own split_test.csv, and only writes
-# when the re-scored mIoU matches the stored one (proves the pipeline is identical).
 import json
 from pathlib import Path
 
@@ -18,7 +15,6 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 MEAN = np.array([0.485, 0.456, 0.406], dtype=np.float32)
 STD = np.array([0.229, 0.224, 0.225], dtype=np.float32)
 
-# run -> how its notebook built the model (Hugging Face config id, or smp encoder)
 RUNS = {
     "01-segformer-mitb3-raw": "nvidia/mit-b3",
     "02-segformer-mitb3-imagenet": "nvidia/mit-b3",
@@ -50,7 +46,6 @@ def score(model, names, size):
         logits = F.interpolate(out.logits, size=x.shape[-2:], mode="bilinear", align_corners=False) if hasattr(out, "logits") else out
         p = (torch.softmax(logits, 1)[0, 1] > 0.5).float()
 
-        # same formulas + eps as compute_stats in the notebooks
         eps = 1e-7
         tp, fp = (p * t).sum(), (p * (1 - t)).sum()
         fn, tn = ((1 - p) * t).sum(), ((1 - p) * (1 - t)).sum()
@@ -75,7 +70,6 @@ for run, src in RUNS.items():
     names = pd.read_csv(ROOT / "results" / run / "v1" / "split_test.csv")["image_name"]
     miou, bg_acc, mpa = score(model, names, m["cfg"]["img_size"])
 
-    # ponytail: 1e-3 tolerance covers GPU float noise; a real pipeline mismatch is off by far more
     ok = abs(miou - m["miou"]) < 1e-3
     print(f"{run:30s} stored mIoU {m['miou']:.4f} | re-scored {miou:.4f} | mPA {mpa:.4f} | {'written' if ok else 'MISMATCH, skipped'}")
     if ok:
