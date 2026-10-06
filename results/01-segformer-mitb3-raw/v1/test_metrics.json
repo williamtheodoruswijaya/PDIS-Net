@@ -29,5 +29,7 @@
     "threshold": 0.5,
     "dup_hamming": 5,
     "run_id": "segformer-raw"
-  }
+  },
+  "background_acc": 0.8260290622711182,
+  "mpa": 0.6957970559597015
 }

@@ -29,5 +29,7 @@
     "threshold": 0.5,
     "dup_hamming": 5,
     "run_id": "segformer-drone"
-  }
+  },
+  "background_acc": 0.9698191285133362,
+  "mpa": 0.8822441101074219
 }
