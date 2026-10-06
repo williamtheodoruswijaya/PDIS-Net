@@ -1,5 +1,9 @@
 # notebooks/
 
+**New runs start from [`v2.ipynb`](v2.ipynb)**: copy it into the run folder as
+`v1.ipynb`, then set `arch`, `init` and `backbone` in `CFG`. It also logs `mpa`
+(mean pixel accuracy). Runs 01-08 got `mpa` afterwards via `model/add_mpa.py`.
+
 Training notebooks, one folder per run:
 
 ```
