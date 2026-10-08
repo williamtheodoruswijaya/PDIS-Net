@@ -16,5 +16,6 @@ Regenerate this table: `python model/build_index.py`. Sorted by mIoU, best first
 | 06-segformer-mitb3-drone | v1 | 0.6001 | 0.7809 | 0.9617 | 0.6996 | 0.8822 |
 | 10-segformer-resnet34-imagenet | v1 | 0.5969 | 0.7801 | 0.9632 | 0.6950 | 0.8741 |
 | 09-unet-resnet34-imagenet | v1 | 0.5694 | 0.7677 | 0.9661 | 0.6681 | 0.8705 |
+| 12-segformer-mitb0-imagenet | v2 | 0.5521 | 0.7552 | 0.9583 | 0.6509 | 0.8725 |
 | 08-unet-resnet34-raw | v1 | 0.3464 | 0.6494 | 0.9524 | 0.4427 | 0.8346 |
 | 01-segformer-mitb3-raw | v1 | 0.1404 | 0.4725 | 0.8046 | 0.1841 | 0.6958 |
