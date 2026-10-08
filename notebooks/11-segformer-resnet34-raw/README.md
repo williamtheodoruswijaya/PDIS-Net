@@ -26,4 +26,5 @@ Set in `CFG` as `arch="segformer-smp"`, `backbone="resnet34"`, `init="raw"`.
 **Caveats:** same as run 10. smp's decoder also reads ResNet's 1/2-resolution stem
 (5 inputs vs MiT's 4), and the LRs were set for MiT, not tuned for this run.
 
-Identical to `10-segformer-resnet34-imagenet/v1.ipynb` except `CFG["init"]`. Outputs cleared.
+Identical to `10-segformer-resnet34-imagenet/v1.ipynb` except `CFG["init"]` and
+`CFG["run_version"] = "v2"` (named after the v2 template). Outputs cleared.

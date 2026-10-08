@@ -27,4 +27,5 @@ to find where shrinking starts to hurt.
 so the comparison is "whole model size", not "encoder only". That is how the SegFormer
 paper defines B0–B5 too.
 
-Identical to `notebooks/v2.ipynb` except `CFG["backbone"]`. Outputs cleared.
+Identical to `notebooks/v2.ipynb` except `CFG["backbone"]` and
+`CFG["run_version"] = "v2"` (named after the v2 template). Outputs cleared.
