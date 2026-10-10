@@ -19,3 +19,5 @@ Set in `CFG` as `arch="deeplab"`, `backbone="resnet34"`, `init="raw"`.
 Raw UNet and raw SegFormer-head land within 0.01 of each other, and both sit about 0.12
 below their ImageNet versions. If DeepLab does the same, the thesis can say that the
 **initialisation matters more than the decoder** on 1,400 training images.
+
+Identical to `notebooks/v2.ipynb` except `arch`, `init`, `backbone` and `run_version = "v2"` (named after the v2 template, like runs 11/12) in `CFG`. Outputs cleared.
