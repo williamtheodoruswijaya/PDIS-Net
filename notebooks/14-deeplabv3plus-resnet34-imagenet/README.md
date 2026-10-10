@@ -18,3 +18,5 @@ Set in `CFG` as `arch="deeplab"`, `backbone="resnet34"`, `init="imagenet"`.
 
 Together with run 13 this gives a 2 encoders x 3 decoders table.
 Learning rates are the MiT-tuned ones from v2, like runs 09/10, so the comparison stays fair.
+
+Identical to `notebooks/v2.ipynb` except `arch`, `init`, `backbone` and `run_version = "v2"` (named after the v2 template, like runs 11/12) in `CFG`. Outputs cleared.

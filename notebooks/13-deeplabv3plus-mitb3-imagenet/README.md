@@ -22,3 +22,5 @@ holds the encoder fixed so only the decoder changes:
 turning stage 4's stride-2 patch embedding into stride 1 with dilation 2. The pretrained
 stage-4 weights were never trained that way, so this encoder is slightly modified compared
 with 02/03. Mention it in Bab 3 if this row is reported.
+
+Identical to `notebooks/v2.ipynb` except `arch`, `init`, `backbone` and `run_version = "v2"` (named after the v2 template, like runs 11/12) in `CFG`. Outputs cleared.
