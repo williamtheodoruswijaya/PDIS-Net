@@ -6,7 +6,7 @@ root = Path(__file__).parent
 rows = []
 for f in sorted(root.glob("*/*/test_metrics.json")):
     m = json.loads(f.read_text())
-    rows.append((m["miou"], f"| {f.parts[-3]} | {f.parts[-2]} | {m['foreground_iou']:.4f} | {m['miou']:.4f} | {m['background_iou']:.4f} | {m['dice']:.4f} | {m['mpa']:.4f} |"))
+    rows.append((m["miou"], f"| {f.parts[-3]} | {f.parts[-2]} | {m['foreground_iou']:.4f} | {m['miou']:.4f} | {m['background_iou']:.4f} | {m['dice']:.4f} | {m.get('mpa', float('nan')):.4f} |"))
 
 lines = [
     "# model/",
