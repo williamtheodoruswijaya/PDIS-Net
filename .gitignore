@@ -9,6 +9,7 @@ __pycache__/
 *.pyc
 .claude
 .copilot
+.vscode
 CLAUDE.md
 AGENTS.md
 dev
