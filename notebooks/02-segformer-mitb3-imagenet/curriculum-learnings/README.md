@@ -12,7 +12,37 @@ with coarse "zone" labels (or missing masks) join. Val and test are exactly v1's
 - **Phase 2 (this notebook):** keep the photos, but teach them last. The model first learns what clean plastic
   looks like, then sees the loose zone labels.
 
-## 1. How the data is built (Split section)
+## 1. How the split works
+
+The split was cut **once**, by baseline v1, with two `train_test_split` calls (seed 42). `data/clean/manifest.csv`
+wrote down each photo's split, and every later run reads it from there. No run re-cuts the split, so no photo
+can change sides.
+
+```mermaid
+flowchart TD
+    all["All 2002 photos"] --> cut1["Cut 1: train_test_split, seed 42<br/>15% to test, same yes/no ratio"]
+    cut1 --> test["test: 301"]
+    cut1 --> rest["1701 left"]
+    rest --> cut2["Cut 2: train_test_split, seed 42<br/>15/85 of the rest to val"]
+    cut2 --> val["val: 301"]
+    cut2 --> train["train: 1400"]
+    train --> man["manifest.csv: each photo's split<br/>written down once, never re-cut"]
+    val --> man
+    test --> man
+    man --> b["v1 baseline<br/>1400 / 301 / 301"]
+    man --> p1["phase 1 clean: drops 94<br/>1335 / 283 / 290"]
+    man --> cl["curriculum: keeps all<br/>1400 / 301 / 301"]
+    classDef frozen fill:#E1F5EE,stroke:#0F6E56,color:#085041
+    class man frozen
+```
+
+- **`15/85`:** after test takes 15%, 85% is left. Taking 15/85 of that gives val 15% of *all* photos, the same size as test.
+- **"Same yes/no ratio"** (`stratify=has_plastic`): every split keeps about 74% "plastic" photos, so no split
+  gets an easier or harder mix by luck.
+- **Why read it instead of re-cutting:** with 94 photos removed, seed 42 would shuffle a different list. 135 photos
+  that v1 trained on would land in the test set.
+
+## 2. How the notebook builds its tables (Split section)
 
 ```mermaid
 flowchart TD
@@ -42,7 +72,7 @@ flowchart TD
 - The counts cell must print `(1335, 1400, 301, 301)`. A second number of 1335 means the clean zip was downloaded
   instead of the original one.
 
-## 2. What one epoch does (Main Loop section)
+## 3. What one epoch does (Main Loop section)
 
 ```mermaid
 flowchart TD
@@ -88,7 +118,26 @@ One knob, three experiments (checked with a dry run: real data plus a fake model
 | `20` | the curriculum | 40 (20 / 20); with a flat stage 1: 28 (20 / 8) |
 | `40` | clean photos only = phase 1 again | 40 (40 / 0) |
 
-## 3. Runs
+## 4. Leakage check: the curriculum adds none
+
+`python notebooks/02-segformer-mitb3-imagenet/curriculum-learnings/leakage_check.py` (run from the repo root)
+compares every run's split with v1's saved `split_*.csv`. It fails if any photo moved or is shared between splits.
+
+| Run | train | val | test | Photos moved vs v1 | Photos in two splits | Test photos with a neighbouring frame in train |
+|---|---|---|---|---|---|---|
+| v1 baseline | 1400 | 301 | 301 | 0 | 0 | 277 of 301 |
+| phase 1 clean | 1335 | 283 | 290 | 0 | 0 | 268 of 290 |
+| curriculum, epochs 1-20 | 1335 | 301 | 301 | 0 | 0 | 268 of 301 |
+| curriculum, epochs 21-40 | 1400 | 301 | 301 | 0 | 0 | 277 of 301 |
+
+- **Moved = 0 and shared = 0 for every run:** phase 1 only *removes* photos, and the curriculum only changes
+  the *order* of train photos. Neither can put a val or test photo into training.
+- **Last column:** the photos are video frames, so a test photo's neighbouring frame can sit in train. That's how
+  the original split already was (v1: 277). Our runs never go above it: 268 while only clean photos train, then
+  back to v1's 277. **The curriculum creates no new near-duplicates.**
+- Val (301) and test (301) are v1's for every epoch, and the best epoch is picked on val, never on test.
+
+## 5. Runs
 
 One Colab session each, T4 GPU, about 1.8 h. Only the CFG cell changes. The Drive folder is named automatically
 (`v2-curriculum-sw{switch_epoch}-s{seed}`), so runs can't overwrite each other.
@@ -102,7 +151,7 @@ One Colab session each, T4 GPU, about 1.8 h. Only the CFG cell changes. The Driv
 Two seeds per side, because one run each can't tell "better" apart from "lucky". The seed changes weight init,
 data order and augmentations. The split stays fixed because it comes from the manifest.
 
-## 4. Results so far (test mIoU, same metric for all)
+## 6. Results so far (test mIoU, same metric for all)
 
 | Run | 301 test photos | 290 clean test photos |
 |---|---|---|
