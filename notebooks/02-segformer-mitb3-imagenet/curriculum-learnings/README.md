@@ -159,8 +159,19 @@ data order and augmentations. The split stays fixed because it comes from the ma
 | v3, Optuna-tuned | 0.8177 | 0.8206 |
 | v2-clean-stage1, phase 1 | 0.8087 | 0.8162 |
 | A: curriculum, switch 20, seed 42 | 0.8169 | 0.8203 |
-| B / C | pending | pending |
+| B: curriculum, switch 20, seed 43 | 0.8048 | 0.8078 |
+| C: baseline, switch 0, seed 43 | pending | pending |
 
-Run A vs v1 on the same photos: -0.005 mIoU (95% bootstrap range -0.011 to +0.001), so it's a tie. That's better
-than phase 1 (-0.009, a clear loss). Best epoch: 39 of 40, after the zone photos joined (best val mIoU before the
-switch: 0.800; after: 0.822). It's one seed, so B and C are needed before calling it.
+Differences vs v1 on the same photos (paired bootstrap, 10,000 resamples, 95% range):
+
+| | @290 | @301 |
+|---|---|---|
+| A - v1 | -0.005 (-0.011 to +0.001), a tie | -0.004 (-0.010 to +0.001), a tie |
+| B - v1 | -0.017 (-0.025 to -0.010), worse | -0.016 (-0.024 to -0.010), worse |
+| mean(A, B) - v1 | -0.011 (-0.017 to -0.006) | -0.010 (-0.016 to -0.005) |
+
+- A's best epoch was 39 of 40, after the zone photos joined. B early-stopped at epoch 34; its best was epoch 26,
+  also after the switch. In both runs the best val score came after the zone photos joined.
+- A and B differ by 0.012 from the seed alone, which is as big as the curriculum-vs-v1 gap. The bootstrap only
+  covers which test photos were picked, not training luck. Run C (the baseline with seed 43) shows whether v1 was
+  itself a lucky draw: compare mean(A, B) with mean(v1, C).
