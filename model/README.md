@@ -10,6 +10,7 @@ Regenerate this table: `python model/build_index.py`. Sorted by mIoU, best first
 |---|---|---|---|---|---|---|
 | 02-segformer-mitb3-imagenet | v1 | 0.6746 | 0.8210 | 0.9675 | 0.7720 | 0.8975 |
 | 02-segformer-mitb3-imagenet | v3 | 0.6670 | 0.8177 | 0.9683 | 0.7620 | 0.9095 |
+| 02-segformer-mitb3-imagenet | v2-curriculum-sw20-s42 | 0.6653 | 0.8169 | 0.9686 | 0.7611 | 0.8974 |
 | 02-segformer-mitb3-imagenet | v2-clean-stage1 | 0.6540 | 0.8162 | 0.9785 | 0.7524 | 0.9086 |
 | 04-segformer-mitb3-aerial | v1 | 0.6595 | 0.8140 | 0.9685 | 0.7588 | 0.9022 |
 | 13-deeplabv3plus-mitb3-imagenet | v2 | 0.6495 | 0.8092 | 0.9688 | 0.7470 | 0.8908 |

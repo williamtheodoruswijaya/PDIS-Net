@@ -158,4 +158,9 @@ data order and augmentations. The split stays fixed because it comes from the ma
 | v1, full data (baseline) | 0.8210 | **0.8250** |
 | v3, Optuna-tuned | 0.8177 | 0.8206 |
 | v2-clean-stage1, phase 1 | 0.8087 | 0.8162 |
-| A / B / C | pending | pending |
+| A: curriculum, switch 20, seed 42 | 0.8169 | 0.8203 |
+| B / C | pending | pending |
+
+Run A vs v1 on the same photos: -0.005 mIoU (95% bootstrap range -0.011 to +0.001), so it's a tie. That's better
+than phase 1 (-0.009, a clear loss). Best epoch: 39 of 40, after the zone photos joined (best val mIoU before the
+switch: 0.800; after: 0.822). It's one seed, so B and C are needed before calling it.
