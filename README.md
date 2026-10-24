@@ -7,9 +7,10 @@
 </p>
 
 <p align="center">
-  <img src="results/02-segformer-mitb3-imagenet/v4-final-no-early-stop/samples.png" width="560" alt="Four drone photos with their hand-drawn plastic masks and the model's predictions">
+  <img src="results/02-segformer-mitb3-imagenet/v4-final-no-early-stop/overlays.png" width="720" alt="Three drone photos with their hand-drawn plastic masks and the model's prediction painted in red">
   <br>
-  <sub>Each row: drone photo, the hand-drawn mask, and what our best model predicts (training-set examples).</sub>
+  <sub>Drone photo, hand-drawn mask, and the model's prediction in red. From the top: lots of litter, one tiny piece,
+  and clean water (training-set examples).</sub>
 </p>
 
 ---
@@ -29,21 +30,21 @@ number in the thesis can be traced back to the exact notebook that produced it.
 ## Where we are
 
 Our best model is **SegFormer with a MiT-B3 encoder, pretrained on ImageNet** (run `02`). The original training
-(v1) is still the one to beat: the tuned versions v3 and v4-final land within about 0.01 of it, well under our 0.02 bar, so we count them as a tie.
+(v1) is still the one to beat: the tuned versions v3 and v4-final land within 0.005 of it, well under our 0.02 bar,
+so we count them as a tie.
 
-After the main comparison grid, we spent a few weeks trying to beat it. Every attempt below was re-scored on
-**the same 301 test photos**, two ways: per photo at threshold 0.5 (how runs v1 to v3 were always scored), and over
-the whole set at a threshold picked on validation (how the v4 notebooks score).
+After the main comparison grid, we spent a few weeks trying to beat it. Every attempt below is scored the same way:
+mIoU per photo at threshold 0.5, on **the same 301 test photos**.
 
-| Run 02 version | What we changed | mIoU, per photo @ 0.5 | mIoU, whole set @ val threshold |
-|---|---|---|---|
-| **v1** | baseline | **0.8210** | 0.8386 |
-| v3 | Optuna search, 12 trials | 0.8177 | **0.8491** |
-| v4 | Optuna search, 24 trials | 0.7810 | 0.8116 |
-| v4-final | v4's best settings, all 40 epochs | 0.8172 | 0.8424 |
-| clean | 94 badly labelled photos removed | 0.8087 | n/a |
-| curriculum A | clean photos first, the rest from epoch 21 | 0.8169 | n/a |
-| curriculum B | same as A, different seed | 0.8048 | n/a |
+| Run 02 version | What we changed | mIoU |
+|---|---|---|
+| **v1** | baseline | **0.8210** |
+| v3 | Optuna search, 12 trials | 0.8177 |
+| v4-final | v4's best settings, all 40 epochs | 0.8172 |
+| curriculum A | clean photos first, the rest from epoch 21 | 0.8169 |
+| clean | 94 badly labelled photos removed | 0.8087 |
+| curriculum B | same as A, different seed | 0.8048 |
+| v4 | Optuna search, 24 trials | 0.7810 |
 
 What we learned along the way:
 
@@ -115,9 +116,3 @@ the outputs can't be downloaded afterwards.
 `deployment/server` is a small inference API and `deployment/client` is a Streamlit app that calls it. The server
 pulls its weights from [adamantix/pdisnet-weights](https://huggingface.co/adamantix/pdisnet-weights) on the
 Hugging Face Hub. The deployed checkpoint is an earlier SegFormer MiT-B3 (test mIoU 0.811).
-
-## Team
-
-William Theodorus Wijaya, Felicia Audrey Tanujaya and Elena, BINUS University.
-
-Thanks to the authors of FloPWD 2025 for releasing the dataset.

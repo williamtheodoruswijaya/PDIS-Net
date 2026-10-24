@@ -32,5 +32,16 @@
     "threshold": 0.9,
     "dup_hamming": 5,
     "run_id": "segformer-mit_b3-imagenet"
+  },
+  "per_image_t05": {
+    "foreground_iou": 0.6655748799833122,
+    "background_iou": 0.9688832356387198,
+    "miou": 0.8172290558830844,
+    "dice": 0.7606019245349264,
+    "precision": 0.7620839360201175,
+    "recall": 0.8349322032631327,
+    "background_acc": 0.974465322504408,
+    "mpa": 0.9046987627827844,
+    "note": "re-scored 2026-10-24 with the v2 template's per-image formula, threshold 0.5, same 301 test photos"
   }
 }
