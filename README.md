@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <img src="results/02-segformer-mitb3-imagenet/v4-final-no-early-stop/overlays.png" width="720" alt="Three drone photos with their hand-drawn plastic masks and the model's prediction painted in red">
+  <img src="results/02-segformer-mitb3-imagenet/v4-final/overlays.png" width="720" alt="Three drone photos with their hand-drawn plastic masks and the model's prediction painted in red">
   <br>
   <sub>Drone photo, hand-drawn mask, and the model's prediction in red. From the top: lots of litter, one tiny piece,
   and clean water (training-set examples).</sub>
@@ -29,18 +29,19 @@ number in the thesis can be traced back to the exact notebook that produced it.
 
 ## Where we are
 
-Our best model is **SegFormer with a MiT-B3 encoder, pretrained on ImageNet** (run `02`). The original training
-(v1) is still the one to beat: the tuned versions v3 and v4-final land within 0.005 of it, well under our 0.02 bar,
-so we count them as a tie.
+Our best model is **SegFormer with a MiT-B3 encoder, pretrained on ImageNet** (run `02`), trained with the settings
+our Optuna search found (**v4-final**, 0.8320 mIoU). That's 0.011 above the original training (v1), and the gap holds
+up when we resample the test photos (95% range +0.002 to +0.019). It's still under our 0.02 bar, though, and v4-final
+trained for 80 epochs where v1 trained for 40, so part of the gain may simply be the longer training.
 
 After the main comparison grid, we spent a few weeks trying to beat it. Every attempt below is scored the same way:
 mIoU per photo at threshold 0.5, on **the same 301 test photos**.
 
 | Run 02 version | What we changed | mIoU |
 |---|---|---|
-| **v1** | baseline | **0.8210** |
+| **v4-final** | v4's best settings, 80 epochs, no early stop | **0.8320** |
+| v1 | baseline, 40 epochs | 0.8210 |
 | v3 | Optuna search, 12 trials | 0.8177 |
-| v4-final | v4's best settings, all 40 epochs | 0.8172 |
 | curriculum A | clean photos first, the rest from epoch 21 | 0.8169 |
 | clean | 94 badly labelled photos removed | 0.8087 |
 | curriculum B | same as A, different seed | 0.8048 |
@@ -52,8 +53,9 @@ What we learned along the way:
   Removing them cost about 0.01 mIoU; those photos still teach the model what dense litter looks like.
 - **Showing the clean photos first didn't help either.** The curriculum runs tied the baseline at best.
 - **Hyperparameter search works, but only if the final run can finish.** v4 found good settings, then early stopping
-  cut the final training at epoch 16 while the learning rate was still high. Letting the same settings train for
-  all 40 epochs (v4-final) brought it from 0.04 behind v1 back to a tie.
+  cut the final training at epoch 16 while the learning rate was still high. Training the same settings
+  for 80 epochs without early stopping (v4-final) took it from 0.04 behind v1 to 0.011 ahead, and it was still
+  improving at the last epoch.
 - **Luck is about ±0.01.** Two runs with the same settings and a different seed moved by that much, so we treat
   gaps under 0.02 as a tie.
 

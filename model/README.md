@@ -11,9 +11,9 @@ The v4 notebooks store a different (dataset-level) score, so their rows use the 
 
 | run | version | foreground IoU | mIoU | background IoU | dice | mPA |
 |---|---|---|---|---|---|---|
+| 02-segformer-mitb3-imagenet | v4-final | 0.6926 | 0.8320 | 0.9715 | 0.7839 | 0.9138 |
 | 02-segformer-mitb3-imagenet | v1 | 0.6746 | 0.8210 | 0.9675 | 0.7720 | 0.8975 |
 | 02-segformer-mitb3-imagenet | v3 | 0.6670 | 0.8177 | 0.9683 | 0.7620 | 0.9095 |
-| 02-segformer-mitb3-imagenet | v4-final-no-early-stop | 0.6656 | 0.8172 | 0.9689 | 0.7606 | 0.9047 |
 | 02-segformer-mitb3-imagenet | v2-curriculum-sw20-s42 | 0.6653 | 0.8169 | 0.9686 | 0.7611 | 0.8974 |
 | 02-segformer-mitb3-imagenet | v2-clean-stage1 | 0.6540 | 0.8162 | 0.9785 | 0.7524 | 0.9086 |
 | 04-segformer-mitb3-aerial | v1 | 0.6595 | 0.8140 | 0.9685 | 0.7588 | 0.9022 |
