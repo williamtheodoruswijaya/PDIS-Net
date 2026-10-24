@@ -4,7 +4,12 @@ Weights (`best.pth`, Git LFS) + the `test_metrics.json` they scored, one folder 
 `model/<run_id>/<version>/`. Same `<run_id>` as `notebooks/` and `results/`.
 Old models (before the 3x3 grid restart) are in `.archive/model/`.
 
-Regenerate this table: `python model/build_index.py`. Sorted by mIoU, best first.
+Regenerate these tables: `python model/build_index.py`. Sorted by mIoU, best first.
+
+The two tables score differently, so don't compare numbers across them. For run 02, every model was
+re-scored both ways on the same photos; see the results section of the main README.
+
+## Per-image IoU, threshold 0.5 (templates v1-v3)
 
 | run | version | foreground IoU | mIoU | background IoU | dice | mPA |
 |---|---|---|---|---|---|---|
@@ -13,7 +18,6 @@ Regenerate this table: `python model/build_index.py`. Sorted by mIoU, best first
 | 02-segformer-mitb3-imagenet | v2-curriculum-sw20-s42 | 0.6653 | 0.8169 | 0.9686 | 0.7611 | 0.8974 |
 | 02-segformer-mitb3-imagenet | v2-clean-stage1 | 0.6540 | 0.8162 | 0.9785 | 0.7524 | 0.9086 |
 | 04-segformer-mitb3-aerial | v1 | 0.6595 | 0.8140 | 0.9685 | 0.7588 | 0.9022 |
-| 02-segformer-mitb3-imagenet | v4 | 0.6477 | 0.8116 | 0.9755 | 0.7862 | 0.8950 |
 | 13-deeplabv3plus-mitb3-imagenet | v2 | 0.6495 | 0.8092 | 0.9688 | 0.7470 | 0.8908 |
 | 07-segformer-mitb5-imagenet | v1 | 0.6501 | 0.8087 | 0.9673 | 0.7483 | 0.8886 |
 | 05-segformer-mitb3-ade | v1 | 0.6499 | 0.8077 | 0.9654 | 0.7469 | 0.9006 |
@@ -29,3 +33,10 @@ Regenerate this table: `python model/build_index.py`. Sorted by mIoU, best first
 | 08-unet-resnet34-raw | v1 | 0.3464 | 0.6494 | 0.9524 | 0.4427 | 0.8346 |
 | 15-deeplabv3plus-resnet34-raw | v2 | 0.2727 | 0.5867 | 0.9007 | 0.3562 | 0.8237 |
 | 01-segformer-mitb3-raw | v1 | 0.1404 | 0.4725 | 0.8046 | 0.1841 | 0.6958 |
+
+## Dataset-level IoU, threshold picked on val (template v4)
+
+| run | version | foreground IoU | mIoU | background IoU | dice | mPA | threshold |
+|---|---|---|---|---|---|---|---|
+| 02-segformer-mitb3-imagenet | v4-final-no-early-stop | 0.7044 | 0.8424 | 0.9804 | 0.8265 | 0.9104 | 0.90 |
+| 02-segformer-mitb3-imagenet | v4 | 0.6477 | 0.8116 | 0.9755 | 0.7862 | 0.8950 | 0.90 |

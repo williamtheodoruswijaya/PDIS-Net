@@ -3,11 +3,15 @@ import json
 from pathlib import Path
 
 root = Path(__file__).parent
-rows = []
+rows = {"per-image": [], "dataset": []}
 for f in sorted(root.glob("*/*/test_metrics.json")):
     m = json.loads(f.read_text())
-    rows.append((m["miou"], f"| {f.parts[-3]} | {f.parts[-2]} | {m['foreground_iou']:.4f} | {m['miou']:.4f} | {m['background_iou']:.4f} | {m['dice']:.4f} | {m.get('mpa', float('nan')):.4f} |"))
+    version = f.parts[-2]
+    kind = "dataset" if version.startswith("v4") else "per-image"  # the v4 template scores dataset-level IoU at a val-picked threshold
+    row = f"| {f.parts[-3]} | {version} | {m['foreground_iou']:.4f} | {m['miou']:.4f} | {m['background_iou']:.4f} | {m['dice']:.4f} | {m.get('mpa', float('nan')):.4f} |"
+    rows[kind].append((m["miou"], row + (f" {m['cfg']['threshold']:.2f} |" if kind == "dataset" else "")))
 
+header = "| run | version | foreground IoU | mIoU | background IoU | dice | mPA |"
 lines = [
     "# model/",
     "",
@@ -15,11 +19,22 @@ lines = [
     "`model/<run_id>/<version>/`. Same `<run_id>` as `notebooks/` and `results/`.",
     "Old models (before the 3x3 grid restart) are in `.archive/model/`.",
     "",
-    "Regenerate this table: `python model/build_index.py`. Sorted by mIoU, best first.",
+    "Regenerate these tables: `python model/build_index.py`. Sorted by mIoU, best first.",
     "",
-    "| run | version | foreground IoU | mIoU | background IoU | dice | mPA |",
+    "The two tables score differently, so don't compare numbers across them. For run 02, every model was",
+    "re-scored both ways on the same photos; see the results section of the main README.",
+    "",
+    "## Per-image IoU, threshold 0.5 (templates v1-v3)",
+    "",
+    header,
     "|---|---|---|---|---|---|---|",
-    *[r for _, r in sorted(rows, reverse=True)],
+    *[r for _, r in sorted(rows["per-image"], reverse=True)],
+    "",
+    "## Dataset-level IoU, threshold picked on val (template v4)",
+    "",
+    header + " threshold |",
+    "|---|---|---|---|---|---|---|---|",
+    *[r for _, r in sorted(rows["dataset"], reverse=True)],
     "",
 ]
 (root / "README.md").write_text("\n".join(lines))
