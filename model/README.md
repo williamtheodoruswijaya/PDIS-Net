@@ -21,6 +21,7 @@ The v4 notebooks store a different (dataset-level) score, so their rows use the 
 | 07-segformer-mitb5-imagenet | v1 | 0.6501 | 0.8087 | 0.9673 | 0.7483 | 0.8886 |
 | 05-segformer-mitb3-ade | v1 | 0.6499 | 0.8077 | 0.9654 | 0.7469 | 0.9006 |
 | 02-segformer-mitb3-imagenet | v2-curriculum-sw20-s43 | 0.6428 | 0.8048 | 0.9668 | 0.7401 | 0.8853 |
+| 02-segformer-mitb3-imagenet | v1-80ep | 0.6367 | 0.8005 | 0.9643 | 0.7354 | 0.9082 |
 | 03-unet-mitb3-imagenet | v1 | 0.6128 | 0.7918 | 0.9709 | 0.7125 | 0.8666 |
 | 17-deeplab-resnet101-imagenet | v1 | 0.6002 | 0.7816 | 0.9631 | 0.6999 | nan |
 | 02-segformer-mitb3-imagenet | v4 | 0.6011 | 0.7810 | 0.9609 | 0.6988 | 0.9069 |
