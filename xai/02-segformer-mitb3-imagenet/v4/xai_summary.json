@@ -1,0 +1,13 @@
+{
+  "run": "02-segformer-mitb3-imagenet",
+  "version": "v4-final",
+  "arch": "segformer",
+  "backbone": "mit_b3",
+  "init": "imagenet",
+  "test_miou": 0.832027018070221,
+  "reproduced_miou": 0.832,
+  "n_faithfulness_images": 219,
+  "kept_after_hot_delete": 0.20315796953328727,
+  "kept_after_cold_delete": 0.6499461216636728,
+  "hot_hurts_more_in": 204
+}
