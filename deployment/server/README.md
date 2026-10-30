@@ -1,16 +1,3 @@
----
-title: PDIS-Net API
-emoji: 🌊
-colorFrom: blue
-colorTo: green
-sdk: gradio
-sdk_version: 6.22.0
-python_version: "3.12"
-app_file: main.py
-pinned: false
-license: mit
----
-
 # PDIS-Net API
 
 Floating plastic segmentation on aerial photos (FloPWD 2025). 16 trained models: pick arch, backbone and pretrained weights.
