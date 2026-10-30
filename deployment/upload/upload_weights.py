@@ -4,9 +4,9 @@ from huggingface_hub import HfApi
 
 DEPLOYMENT = Path(__file__).resolve().parents[1]
 REPO_ROOT = DEPLOYMENT.parent
-sys.path.insert(0, str(DEPLOYMENT / "backend"))  # reuse the ONE model list in core/
-from core.domain.options import OPTIONS  # noqa: E402
-from core.entities.trained_models import TRAINED_MODELS  # noqa: E402
+sys.path.insert(0, str(DEPLOYMENT / "server"))
+from core.domain.options import OPTIONS
+from core.entities.trained_models import TRAINED_MODELS
 
 api = HfApi()
 for arch, backbone, init, folder in TRAINED_MODELS:
@@ -15,6 +15,6 @@ for arch, backbone, init, folder in TRAINED_MODELS:
         folder_path=REPO_ROOT / "model" / folder,
         path_in_repo=folder,
         repo_id=OPTIONS.weights_repo,
-        allow_patterns=["best.pth", "test_metrics.json"],  # always together: get_catalog() reads the json
+        allow_patterns=["best.pth", "test_metrics.json"],
         commit_message=f"add {folder}",
     )
