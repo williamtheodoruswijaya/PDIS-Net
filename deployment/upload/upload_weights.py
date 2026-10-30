@@ -1,24 +1,20 @@
+import sys
 from pathlib import Path
 from huggingface_hub import HfApi
 
-MODEL_DIR = Path(__file__).resolve().parents[2] / "model"
+DEPLOYMENT = Path(__file__).resolve().parents[1]
+REPO_ROOT = DEPLOYMENT.parent
+sys.path.insert(0, str(DEPLOYMENT / "server"))
+from core.domain.options import OPTIONS
+from core.entities.trained_models import TRAINED_MODELS
 
 api = HfApi()
-api.create_repo("adamantix/pdisnet-weights", repo_type="model", exist_ok=True)
-
-api.upload_folder(
-    folder_path = MODEL_DIR / "segformer",
-    path_in_repo = "segformer",
-    repo_id = "adamantix/pdisnet-weights",
-    ignore_patterns = ["*.pth"],
-)
-
-'''
-# for name, skip in UPLOAD.items():
-#     api.upload_folder(
-#         folder_path = MODEL_DIR/name,
-#         path_in_repo = name,
-#         repo_id = "adamantix/pdisnet-weights",
-#         ignore_patterns = skip,
-#     )
-'''
+for arch, backbone, init, folder in TRAINED_MODELS:
+    print(f"uploading {arch}-{backbone}-{init} from model/{folder}")
+    api.upload_folder(
+        folder_path=REPO_ROOT / "model" / folder,
+        path_in_repo=folder,
+        repo_id=OPTIONS.weights_repo,
+        allow_patterns=["best.pth", "test_metrics.json"],
+        commit_message=f"add {folder}",
+    )

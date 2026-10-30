@@ -1,0 +1,93 @@
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.toggle {
+  display: inline-flex;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.toggle button {
+  padding: 5px 14px;
+  border: none;
+  background: var(--surface);
+  color: var(--accent);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.toggle button + button {
+  border-left: 1px solid var(--accent);
+}
+
+.toggle .active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  border-radius: 6px;
+}
+
+.empty {
+  aspect-ratio: 16 / 9;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+  background: #111;
+  color: #8a8a8a;
+  font-size: 14px;
+}
+
+.overlay {
+  position: relative;
+}
+
+.highlight {
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+  background: rgba(229, 57, 53, 0.6);
+  mask-mode: luminance;
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+}
+
+.legend {
+  display: flex;
+  gap: 32px;
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.legend span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.swatch {
+  width: 14px;
+  height: 14px;
+  border: 1px solid #111;
+  border-radius: 3px;
+}
+
+.swatchPlastic {
+  background: rgba(229, 57, 53, 0.6);
+}
