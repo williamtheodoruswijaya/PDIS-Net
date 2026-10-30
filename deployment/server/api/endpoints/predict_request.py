@@ -1,5 +1,4 @@
 import io
-from colorama import init
 from fastapi import HTTPException, UploadFile
 from PIL import Image
 from pydantic import BaseModel
@@ -33,11 +32,15 @@ def validate_photo(upload: UploadFile) -> Image.Image:
 
     try:
         image = Image.open(io.BytesIO(data))
-        image.load()
     except Exception:
         raise HTTPException(400, "Not a valid image file")
 
     if max(image.size) > MAX_IMAGE_SIDE:
         raise HTTPException(413, "Image side too large (max 4096 px)")
+
+    try:
+        image.load()
+    except Exception:
+        raise HTTPException(400, "Not a valid image file")
 
     return image

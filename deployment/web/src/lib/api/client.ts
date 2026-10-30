@@ -19,6 +19,9 @@ export async function predict(photo: File, arch: string, backbone: string, init:
   form.append("init", init);
 
   const res = await fetch(`${API_URL}/predict`, { method: "POST", body: form });
-  if (!res.ok) throw new Error((await res.json()).detail ?? `POST /predict failed: ${res.status}`);
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}));
+    throw new Error(body.detail ?? `POST /predict failed: ${res.status}`);
+  }
   return res.json();
 }
