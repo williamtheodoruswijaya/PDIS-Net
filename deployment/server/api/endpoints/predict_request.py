@@ -1,4 +1,5 @@
 import io
+from colorama import init
 from fastapi import HTTPException, UploadFile
 from PIL import Image
 from pydantic import BaseModel
@@ -19,14 +20,14 @@ class Prediction(BaseModel):
     mask_png_b64: str 
 
 def validate_model_id(arch, backbone, init):
-    model_id = f"{arch}_{backbone}_{init}"
+    model_id = f"{arch}-{backbone}-{init}"
 
     if model_id not in get_catalog():
         raise HTTPException(400, f"No trained model for {arch} + {backbone} + {init}. See GET /models.")
     return model_id
 
 def validate_photo(upload: UploadFile) -> Image.Image:
-    data = upload.file.read(MAX_UPLOAD_BYTES + 1)  # read 1 byte past the limit to detect "too big"
+    data = upload.file.read(MAX_UPLOAD_BYTES + 1)
     if len(data) > MAX_UPLOAD_BYTES:
         raise HTTPException(413, "Image too large (max 10 MB)")
 

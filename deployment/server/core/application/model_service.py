@@ -1,6 +1,5 @@
 import json
 from functools import lru_cache
-from numpy import info
 import segmentation_models_pytorch as smp
 import torch
 from transformers import SegformerConfig, SegformerForSemanticSegmentation

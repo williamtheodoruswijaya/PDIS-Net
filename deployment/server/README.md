@@ -25,9 +25,37 @@ Weights: [adamantix/pdisnet-weights](https://huggingface.co/adamantix/pdisnet-we
 - `POST /predict` — multipart: `file`, `arch`, `backbone`, `init` → mask (base64 PNG), coverage %, category, recommendation
 - `/ui` — small Gradio test page
 
-## Layout
+## Architecture
 
-- `main.py` — entry point, starts the API on port 7860
-- `api/` — API host: one file per endpoint, no model logic
-- `core/` — everything about models: domain (constants, options), entities (trained model list),
-  infrastructure (where weights come from), application (load models, segment a photo, coverage category)
+![Onion architecture](docs/architecture.png)
+
+Onion architecture: imports point inward. Outer rings may import inner ones, inner rings never import outer ones.
+Swapping the Hugging Face Hub for a local folder, or FastAPI for something else, never touches the center.
+
+```
+deployment/server/
+├── main.py                          # outside the onion: starts the API on port 7860
+├── requirements.txt
+├── README.md
+├── docs/architecture.png
+├── api/                             # outer ring: the front door (HTTP)
+│   ├── app.py                       #   wires endpoints, CORS, startup checks
+│   ├── gradio_preview.py            #   /ui test page
+│   └── endpoints/                   #   one file per endpoint
+│       ├── health.py                #     GET  /health
+│       ├── list_models.py           #     GET  /models
+│       ├── predict.py               #     POST /predict
+│       └── predict_request.py       #     response shape + input checks for /predict
+└── core/
+    ├── infrastructure/              # outer ring: plumbing (talks to the outside world)
+    │   └── weights_store.py         #   weights from the local model/ folder or the HF Hub
+    ├── application/                 # middle ring: services (what the system does)
+    │   ├── model_service.py         #   model catalog + rebuild a model from best.pth
+    │   ├── segmentation_service.py  #   photo -> mask + coverage + category
+    │   └── coverage_service.py      #   coverage % -> category + recommendation
+    ├── domain/                      # center: fixed rules
+    │   ├── constants.py             #   input size, ImageNet mean/std, coverage cut-offs
+    │   └── options.py               #   settings from environment variables
+    └── entities/                    # center: what the system is about
+        └── trained_models.py        #   the 16 trained arch/backbone/init combos
+```
