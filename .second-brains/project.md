@@ -52,6 +52,18 @@ deployment/  server (FastAPI + Gradio, onion architecture, HF Space) ; web (Next
 Training environment: Google Colab T4 (Kaggle variants in `notebooks/.kaggles/`), outputs to
 `Drive: THESIS/runs/<run_id>/<version>/`, then copied into `results/` + `model/`. ~1.8 h per 40-epoch run on T4.
 
+## Google Drive (`My Drive/THESIS/`, owner admantix32)
+
+- `runs/<run_id>/<version>/`: raw notebook outputs, already mirrored in `results/` + `model/`
+- `hyperparameter tunings/`: v3 notebook + Optuna db
+- `.second-brain.zip` (168 MB, id `1UywMzjA3swtA4YXCP-8mB9TRM3WmLgch`): the user's **local second brain**
+  (e.g. `bad-annotations.md`). **Not readable from the cloud yet**: proxy blocks `drive.google.com` and the Drive
+  connector caps downloads at 10 MB.
+- Outside THESIS: `gdino_sam_mask_refinement_v2.ipynb` (2026-06-05) + `pdisnet_mask_refinement_v2/pdisnet_refined_masks_v2.zip`
+  (7.9 MB): an early **Grounding-DINO + SAM mask-refinement** experiment that isn't in the repo. Ask the user whether it
+  belongs in the thesis (e.g. as a tried-and-dropped label-cleaning approach).
+- No thesis draft or BINUS template found in Drive (searched skripsi/thesis/bab/PDIS/FloPWD).
+
 ## Timeline (from `.archive/model/history/` + git log)
 
 | Date (2026) | Milestone |
