@@ -22,6 +22,7 @@ Built 2026-11-05 by traversing the whole repo. Read this first in every session.
 | [`methods.md`](methods.md) | exact training recipe, models, loss, metrics, HPO, curriculum, XAI, deployment | Bab 3 |
 | [`results.md`](results.md) | every number, grouped into the tables the thesis needs | Bab 4 |
 | [`gotchas.md`](gotchas.md) | inconsistencies + caveats to handle before a number goes into the draft | all |
+| [`thesis-status.md`](thesis-status.md) | where the thesis + diff artifact live, writing rules, decisions log | all |
 
 ## Golden rule
 
