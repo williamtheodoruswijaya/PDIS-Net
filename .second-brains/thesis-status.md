@@ -41,7 +41,7 @@ Read with `README.md`. Updated 6 Nov 2026.
 |---|---|
 | 6 Nov | 4.6 intro: definition of Seg-Eigen-CAM + method steps removed; points to 2.1.23 (theory, cited) and 3.6.3 (method). 3.6.3 now says the gradient is taken on the predicted plastic area |
 | 6 Nov | **4.6.1 Uji Kesesuaian Heatmap (deletion test) removed** (team: too advanced). Also removed from 2.1.23, 3.6.3, Bab 5 and Daftar Pustaka (Petsiuk). 4.6.2 → 4.6.1 Hasil, 4.6.3 → 4.6.2 Keterbatasan |
-| 6 Nov | Tabel 4.1 = William's laptop (Ryzen 7 8840HS, Radeon 780M integrated, ~377 MB dedicated, shared with RAM). "4 GB" sentence replaced: integrated GPU + no CUDA support → training on Colab/Kaggle T4 |
+| 6 Nov | Tabel 4.1 = RTX 3050 laptop (Intel Core i5-11400H 6c/12t, RTX 3050 Laptop GPU 4 GB, 16 GB RAM; OS still to confirm). Original "4 GB tidak mencukupi" sentence kept (true for this PC; model_summary: ~1,6 GB fwd/bwd per 512×512 image). The AMD laptop (Ryzen 7 8840HS + Radeon 780M) is no longer listed |
 | 6 Nov | 4.6 heatmap averages (0,561/0,215/0,467/0,236), img1454 limitation and the 1×1-kernel sentence removed. New limitation sentence: heatmap faithfulness not tested quantitatively |
 
 The deletion-test code still exists in the repo (`xai/02-segformer-mitb3-imagenet/v4/[fix]SEGEIGENCAM_pipeline_v4_final.ipynb`,
