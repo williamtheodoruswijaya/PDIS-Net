@@ -30,8 +30,10 @@ Read with `README.md`. Updated 6 Nov 2026.
 - **From the Seg-Eigen-CAM section onward (6 Nov): no derived or script-only numbers.** That means no heatmap
   averages, no per-photo % computed outside the repo. Describe heatmaps qualitatively from Gambar 4.5. Numbers in
   earlier sections that come from `results/` / `model/` stay.
-- **Never claim anything about areas outside the predicted mask** from the heatmap (it is always ~0/blue there by
-  construction). E.g. NOT "perahu berwarna biru jadi tidak berpengaruh".
+- **Never claim anything about areas outside the predicted mask** from the heatmap. The gradient is zero there, so
+  the colour means nothing: usually blue, but on img1454 the water outside the prediction was the hottest part.
+  E.g. NOT "perahu berwarna biru jadi tidak berpengaruh". Standard phrase in the thesis: "*heatmap* hanya
+  menjelaskan bagian yang diprediksi sebagai plastik". Avoid "memiliki nilai di dalam area prediksi" (confusing).
 
 ## Decisions log
 
