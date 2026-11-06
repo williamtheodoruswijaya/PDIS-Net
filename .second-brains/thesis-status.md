@@ -41,6 +41,7 @@ Read with `README.md`. Updated 6 Nov 2026.
 |---|---|
 | 6 Nov | 4.6 intro: definition of Seg-Eigen-CAM + method steps removed; points to 2.1.23 (theory, cited) and 3.6.3 (method). 3.6.3 now says the gradient is taken on the predicted plastic area |
 | 6 Nov | **4.6.1 Uji Kesesuaian Heatmap (deletion test) removed** (team: too advanced). Also removed from 2.1.23, 3.6.3, Bab 5 and Daftar Pustaka (Petsiuk). 4.6.2 → 4.6.1 Hasil, 4.6.3 → 4.6.2 Keterbatasan |
+| 6 Nov | Tabel 4.1 = William's laptop (Ryzen 7 8840HS, Radeon 780M integrated, ~377 MB dedicated, shared with RAM). "4 GB" sentence replaced: integrated GPU + no CUDA support → training on Colab/Kaggle T4 |
 | 6 Nov | 4.6 heatmap averages (0,561/0,215/0,467/0,236), img1454 limitation and the 1×1-kernel sentence removed. New limitation sentence: heatmap faithfulness not tested quantitatively |
 
 The deletion-test code still exists in the repo (`xai/02-segformer-mitb3-imagenet/v4/[fix]SEGEIGENCAM_pipeline_v4_final.ipynb`,
@@ -52,5 +53,4 @@ material for sidang questions, just not in the text.
 - Team decisions Q1–Q5 in `REVISI-bab1-3-before-after.md` §7 (RM → 5 items, drop Focal Loss, near-duplicate
   limitation, UAT method, source of Gambar 1.2).
 - 4.9 UAT / evaluasi aplikasi + its Bab 5 sentence still a placeholder.
-- Tabel 4.1 hardware (Radeon 780M vs RTX 3050 4 GB) to be confirmed by the team.
 - Bootstrap CIs come from the local note `EVAL-02-segformer-v4-hpo.md`, not a repo file (and Bab 4 dropped CIs on 5 Nov).
