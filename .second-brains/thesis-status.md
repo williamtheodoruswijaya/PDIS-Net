@@ -9,7 +9,9 @@ Read with `README.md`. Updated 6 Nov 2026.
   pada Citra Udara Berbasis Deep Learning*.
 - **Source of truth = the team's Word file** (`THESIS v1`). We never edit Word directly.
 - **Proposed changes live in the diff artifact:** https://claude.ai/artifact/VaPYGxN2tZDd9y7u4D41mD
-  ("THESIS v1.pdf → proposed", anchors `#bab1` … `#bab5`, `#refs`). It also serves `pdf/thesis-v1-lengkap.pdf`
+  (since 12 Nov rebuilt by another session as "THESIS live (SharePoint 12 Nov).pdf → proposed", with fold/hint
+  sections; anchors `#bab1` … `#bab5`, `#refs`). **Other sessions publish to it too: always build on the latest
+  version** (a stale publish is refused and hands over the live source to merge). It also serves `pdf/thesis-v1-lengkap.pdf`
   (125 pages, latest full PDF) and `pdf/sidang-pdis-net.pdf` (20 slides). Private: teammates need it shared.
 - **The user's local second brain** (`.second-brain/`, singular, gitignored) is on Drive:
   `THESIS/.second-brain.zip`. Key files there: `PLAN-thesis-v1-revisi-dan-bab4.md` (27 Oct master plan, partly
@@ -34,6 +36,24 @@ Read with `README.md`. Updated 6 Nov 2026.
   the colour means nothing: usually blue, but on img1454 the water outside the prediction was the hottest part.
   E.g. NOT "perahu berwarna biru jadi tidak berpengaruh". Standard phrase in the thesis: "*heatmap* hanya
   menjelaskan bagian yang diprediksi sebagai plastik". Avoid "memiliki nilai di dalam area prediksi" (confusing).
+- **Don't name the 12 label–mask mismatches** (8 "yes"/empty, 4 "no"/plastic) in the thesis (team, 12 Nov).
+  Details stay in `data/clean/README.md` for sidang questions.
+
+## Voice sample (user's own rewrite, 12 Nov — "nanti style wordingnya seperti ini")
+
+> Mask pada dataset tidak semuanya bernilai 0 dan 255, sebagian kecil piksel memiliki nilai yang berada tepat di
+> antara 0 dan 255. Hal ini dikarenakan data mask yang di anotasi secara manual dari sumber dataset kita. Oleh karena
+> itu, mask diubah menjadi biner dengan threshold 127. Piksel dengan nilai di atas 127 diberi nilai 1 sebagai plastik,
+> sedangkan piksel lainnya diberi nilai 0 yang merupakan label untuk latar belakang. Hal ini dilakukan supaya seluruh
+> mask hanya berisi nilai 0 dan 1. Selain itu, label "yes" dan "no" pada dataset diubah menjadi kolom has_plastic,
+> yang menunjukkan apakah sebuah citra mengandung plastik atau tidak. Kolom ini kemudian digunakan hanya untuk
+> stratifikasi pada saat pembagian data, sedangkan model utama tetap dilatih menggunakan mask sebagai ground truth.
+
+Observed in this sample (follow these; confirm before turning them into hard rules): explain the cause in its own
+sentence ("Hal ini dikarenakan …"), then the step ("Oleh karena itu, …"), then the purpose ("Hal ini dilakukan
+supaya …"); "tidak semuanya" over "tidak seluruhnya"; "yang merupakan …"; "kemudian", "pada saat", "tetap" as
+connectors; one step per sentence. Watch for: "kita" (informal, use "peneliti"/"pembuat *dataset*") and "di anotasi"
+→ "dianotasi".
 
 ## Decisions log
 
